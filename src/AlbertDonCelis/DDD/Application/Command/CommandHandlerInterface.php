@@ -1,6 +1,6 @@
 <?php
 
-namespace AlbertDonCelis\Application\Command;
+namespace AlbertDonCelis\DDD\Application\Command;
 
 interface CommandHandlerInterface
 {
