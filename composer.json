@@ -1,0 +1,30 @@
+{
+    "name": "albertdoncelis/php-ddd",
+    "type": "library",
+    "require": {
+        "php": ">= 7.2"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^5.1",
+        "behat/behat": "^3.5@stable",
+        "phing/phing": "^2.16",
+        "phpmd/phpmd": "^2.6",
+        "fzaninotto/faker": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "AlbertDonCelis\\": "src/AlbertDonCelis",
+            "spec\\": "spec"
+        }
+    },
+    "authors": [
+        {
+            "name": "Albert Don Celis",
+            "email": "celisdonalbert@gmail.com"
+        }
+    ],
+    "config": {
+        "bin-dir": "bin"
+    }
+  
+}
