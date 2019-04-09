@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/albertdoncelis/php-ddd.svg)](https://travis-ci.org/albertdoncelis/php-ddd)
+[![Coverage Status](https://coveralls.io/repos/github/albertdoncelis/php-ddd/badge.svg)](https://coveralls.io/github/albertdoncelis/php-ddd)
