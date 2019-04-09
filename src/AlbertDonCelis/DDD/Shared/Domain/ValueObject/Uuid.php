@@ -2,10 +2,8 @@
 
 namespace AlbertDonCelis\DDD\Shared\Domain\ValueObject;
 
-
 class Uuid
 {
-
     /** @var string $value */
     private $value;
 
@@ -27,8 +25,11 @@ class Uuid
     {
         if (!\Ramsey\Uuid\Uuid::isValid($value)) {
             throw new \InvalidArgumentException(
-                sprintf('<%s> does not allow the value <%s>',
-                    static::class, is_scalar($value) ? $value : gettype($value))
+                sprintf(
+                    '<%s> does not allow the value <%s>',
+                    static::class,
+                    is_scalar($value) ? $value : gettype($value)
+                )
             );
         }
     }
@@ -42,5 +43,4 @@ class Uuid
     {
         return $this->value();
     }
-
 }

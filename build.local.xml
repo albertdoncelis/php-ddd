@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="albertdoncelis/ddd-php" default="build">
+    <property name="source" value="src/AlbertDonCelis/"/>
+    <property name="phpcs.reportsdir" value="${project.basedir}/build/logs/phpcs"/>
+    <property name="phpmd.reportsdir" value="${project.basedir}/build/logs/phpmd"/>
+    <property name="phpcpd.reportsdir" value="${project.basedir}/build/logs/phpcpd"/>
+    <property name="coverage.reportsdir" value="${project.basedir}/build/logs/phpspec_coverage"/>
+
+    <target name="build" depends="main"/>
+
+    <target name="main">
+        <phingcall target="build reset"></phingcall>
+        <phingcall target="phpcbf"></phingcall>
+        <phingcall target="PSR2 coding standard compliance"></phingcall>
+        <phingcall target="clean code violations"></phingcall>
+        <phingcall target="run Phpspec testing"></phingcall>
+    </target>
+
+    <target name="build reset">
+        <delete dir="${phpcs.reportsdir}" quiet="true"></delete>
+        <delete dir="${phpcpd.reportsdir}" quiet="true"></delete>
+        <delete dir="${phpmd.reportsdir}" quiet="true"></delete>
+        <delete dir="${coverage.reportsdir}" quiet="true"></delete>
+        <mkdir dir="${phpcs.reportsdir}"></mkdir>
+        <mkdir dir="${phpcpd.reportsdir}"></mkdir>
+        <mkdir dir="${phpmd.reportsdir}"></mkdir>
+        <mkdir dir="${coverage.reportsdir}"></mkdir>
+    </target>
+
+    <target name="phpcbf">
+        <exec logoutput="false"
+              checkreturn="false"
+              passthru="false"
+              command="'${project.basedir}/bin/phpcbf' --standard=PSR2 '${source}'"/>
+    </target>
+
+    <target name="PSR2 coding standard compliance">
+        <exec logoutput="false"
+              checkreturn="false"
+              passthru="false"
+              command="'${project.basedir}/bin/phpcs' '${source}' --standard=PSR2 --report-full='${phpcs.reportsdir}/report.txt'"/>
+    </target>
+
+    <target name="clean code violations" description="Detect clean code violations">
+        <exec
+                logoutput="false"
+                checkreturn="true"
+                passthru="false"
+                command="'${project.basedir}/bin/phpmd' '${source}' html '${project.basedir}/phpmd.xml' --reportfile '${phpmd.reportsdir}/index.html'"
+        />
+    </target>
+
+    <target name="run Phpspec testing" description="Detect clean code violations">
+        <exec
+                logoutput="false"
+                checkreturn="true"
+                passthru="false"
+                command="'${project.basedir}/bin/phpspec' run --config '${project.basedir}/phpspec.codecoverage.yml' --no-ansi"
+        />
+    </target>
+</project>

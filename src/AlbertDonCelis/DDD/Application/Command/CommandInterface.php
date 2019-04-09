@@ -1,5 +1,8 @@
-<?php 
+<?php
 
 namespace AlbertDonCelis\DDD\Application\Command;
 
-interface CommandInterface {}
+interface CommandInterface
+{
+
+}
