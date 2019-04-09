@@ -1,8 +1,9 @@
 <?php
 
-namespace spec\AlbertDonCelis\DDD\Shared\Domain\ValueObject;
+namespace spec\AlbertDonCelis\DDD\Domain\ValueObject;
 
-use AlbertDonCelis\DDD\Shared\Domain\ValueObject\Uuid;
+use AlbertDonCelis\DDD\Domain\IDGenerator;
+use AlbertDonCelis\DDD\Domain\ValueObject\Uuid;
 use Faker\Factory;
 use Faker\Generator;
 use InvalidArgumentException;
@@ -24,6 +25,7 @@ class UuidSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType(Uuid::class);
+        $this->shouldImplement(IDGenerator::class);
     }
 
     public function let()
@@ -49,5 +51,12 @@ class UuidSpec extends ObjectBehavior
     {
         $this->beConstructedWith($uuid = $this->faker->uuid());
         $this->__toString()->shouldReturn($uuid);
+    }
+
+    public function it_should_compare_the_value_of_two_object(IDGenerator $IDGeneratorInterface)
+    {
+
+        $IDGeneratorInterface->value()->shouldBeCalledTimes(1)->willReturn($this->value());
+        $this->equals($IDGeneratorInterface)->shouldReturn(true);
     }
 }

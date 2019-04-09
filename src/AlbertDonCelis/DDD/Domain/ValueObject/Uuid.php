@@ -1,8 +1,10 @@
 <?php
 
-namespace AlbertDonCelis\DDD\Shared\Domain\ValueObject;
+namespace AlbertDonCelis\DDD\Domain\ValueObject;
 
-class Uuid
+use AlbertDonCelis\DDD\Domain\IDGenerator;
+
+class Uuid implements IDGenerator
 {
     /** @var string $value */
     private $value;
@@ -10,10 +12,11 @@ class Uuid
     public function __construct(string $value)
     {
         $this->isValidUuid($value);
+
         $this->value = $value;
     }
 
-    public static function generate(): self
+    public static function generate(): IDGenerator
     {
         return new self(\Ramsey\Uuid\Uuid::uuid4()->toString());
     }
@@ -36,11 +39,16 @@ class Uuid
 
     public function value(): string
     {
-        return $this->value;
+        return (string) $this->value;
     }
 
     public function __toString(): string
     {
-        return $this->value();
+        return (string) $this->value();
+    }
+
+    public function equals(IDGenerator $idGenerator): bool
+    {
+        return $this->value() === $idGenerator->value();
     }
 }
