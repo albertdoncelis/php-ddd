@@ -9,7 +9,7 @@ before_script:
 
 script:
   - ./bin/phing
-  - ./bin/phpunit --coverage-clover ./build/logs/clover.xml
+  - ./bin/php-coveralls -x build/logs/clover.xml
 after_success:
   - ./bin/php-coveralls -v
 
