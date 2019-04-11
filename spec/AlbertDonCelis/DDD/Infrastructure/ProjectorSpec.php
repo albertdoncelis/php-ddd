@@ -2,7 +2,7 @@
 
 namespace spec\AlbertDonCelis\DDD\Infrastructure;
 
-use AlbertDonCelis\DDD\Domain\EventInterface;
+use AlbertDonCelis\DDD\Domain\DomainEventInterface;
 use AlbertDonCelis\DDD\Infrastructure\Projection\ProjectionInterface;
 use AlbertDonCelis\DDD\Infrastructure\Projector;
 use Faker\Factory;
@@ -44,7 +44,7 @@ class ProjectorSpec extends ObjectBehavior
 
     }
 
-    public function it_should_subscribe(EventInterface $event, ProjectionInterface $projection) {
+    public function it_should_subscribe(DomainEventInterface $event, ProjectionInterface $projection) {
 
         $projections = [];
         $randomCount = rand(1, 10);

@@ -2,9 +2,9 @@
 
 namespace AlbertDonCelis\DDD\Domain\ValueObject;
 
-use AlbertDonCelis\DDD\Domain\IDGenerator;
+use Buttercup\Protects\IdentifiesAggregate;
 
-class Uuid implements IDGenerator
+class Uuid implements IdentifiesAggregate
 {
     /** @var string $value */
     private $value;
@@ -16,7 +16,7 @@ class Uuid implements IDGenerator
         $this->value = $value;
     }
 
-    public static function generate(): IDGenerator
+    public static function generate(): IdentifiesAggregate
     {
         return new self(\Ramsey\Uuid\Uuid::uuid4()->toString());
     }
@@ -37,18 +37,19 @@ class Uuid implements IDGenerator
         }
     }
 
-    public function value(): string
+    public function __toString(): string
     {
         return (string) $this->value;
     }
 
-    public function __toString(): string
+    public function equals(IdentifiesAggregate $idGenerator): bool
     {
-        return (string) $this->value();
+        return $this->__toString() === $idGenerator->__toString();
     }
 
-    public function equals(IDGenerator $idGenerator): bool
+
+    public static function fromString($idString): IdentifiesAggregate
     {
-        return $this->value() === $idGenerator->value();
+        return new self($idString);
     }
 }

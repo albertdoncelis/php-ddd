@@ -2,12 +2,13 @@
 
 namespace spec\AlbertDonCelis\DDD\Domain\ValueObject;
 
-use AlbertDonCelis\DDD\Domain\IDGenerator;
 use AlbertDonCelis\DDD\Domain\ValueObject\Uuid;
+use Buttercup\Protects\IdentifiesAggregate;
 use Faker\Factory;
 use Faker\Generator;
 use InvalidArgumentException;
 use PhpSpec\ObjectBehavior;
+use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 /**
@@ -25,7 +26,7 @@ class UuidSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType(Uuid::class);
-        $this->shouldImplement(IDGenerator::class);
+        $this->shouldImplement(IdentifiesAggregate::class);
     }
 
     public function let()
@@ -53,10 +54,25 @@ class UuidSpec extends ObjectBehavior
         $this->__toString()->shouldReturn($uuid);
     }
 
-    public function it_should_compare_the_value_of_two_object(IDGenerator $IDGeneratorInterface)
+    public function it_should_compare_the_value_of_two_object(IdentifiesAggregate $IDGeneratorInterface)
     {
-
-        $IDGeneratorInterface->value()->shouldBeCalledTimes(1)->willReturn($this->value());
+        $IDGeneratorInterface->__toString()->shouldBeCalledTimes(1)->willReturn($this->__toString());
         $this->equals($IDGeneratorInterface)->shouldReturn(true);
+    }
+
+    public function it_should_create_an_identifier_object_from_the_string()
+    {
+        $identifier = Factory::create()->uuid();
+
+        $this->beConstructedThrough('fromString', [ $identifier ]);
+
+        Assert::assertTrue(($this->__toString() != ""));
+
+    }
+
+    public function it_should_throw_an_error_when_the_string_is_not_a_valid_uuid()
+    {
+        $identifier = Factory::create()->firstName();
+        $this->shouldThrow(InvalidArgumentException::class)->duringFromString($identifier);
     }
 }

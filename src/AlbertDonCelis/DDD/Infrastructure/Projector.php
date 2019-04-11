@@ -2,7 +2,7 @@
 
 namespace AlbertDonCelis\DDD\Infrastructure;
 
-use AlbertDonCelis\DDD\Domain\EventInterface;
+use AlbertDonCelis\DDD\Domain\DomainEventInterface;
 use AlbertDonCelis\DDD\Infrastructure\Projection\ProjectionInterface;
 
 class Projector
@@ -26,7 +26,7 @@ class Projector
         return array_key_exists($listenToEventNameOf, $this->projections);
     }
 
-    public function subscribeTo(EventInterface $event)
+    public function subscribeTo(DomainEventInterface $event)
     {
         $eventListenTo = $event->eventName();
 

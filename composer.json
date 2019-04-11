@@ -4,7 +4,8 @@
     "description": "",
     "require": {
         "php": ">= 7.1",
-        "ramsey/uuid": "^3.8"
+        "ramsey/uuid": "^3.8",
+        "buttercup/protects": "dev-master"
     },
     "require-dev": {
         "phpspec/phpspec": "^4.2",

@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ffd7ba034e13b3c394a9ebf712fb9c4",
+    "content-hash": "d339a94ef792dc8f145a6584d87ddb8a",
     "packages": [
+        {
+            "name": "buttercup/protects",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/buttercup-php/protects.git",
+                "reference": "56df1cdf17f05987ebe4a8d9924f57daf04cb363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/buttercup-php/protects/zipball/56df1cdf17f05987ebe4a8d9924f57daf04cb363",
+                "reference": "56df1cdf17f05987ebe4a8d9924f57daf04cb363",
+                "shasum": ""
+            },
+            "require-dev": {
+                "mathiasverraes/classfunctions": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Buttercup\\": [
+                        "src/Buttercup",
+                        "tests/Buttercup"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathias Verraes",
+                    "email": "mathias@verraes.net",
+                    "homepage": "http://verraes.net",
+                    "role": "Developer of wrapped Money library"
+                }
+            ],
+            "description": "Buttercup.Protects is a PHP library for building Aggregates that protect business rules, and that announce Domain Events.",
+            "homepage": "http://buttercup-php.github.io/protects/",
+            "keywords": [
+                "cqrs",
+                "domain-driven design",
+                "event sourcing"
+            ],
+            "time": "2014-06-28 14:34:37"
+        },
         {
             "name": "paragonie/random_compat",
             "version": "v9.99.99",
@@ -3794,6 +3841,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "buttercup/protects": 20,
         "behat/behat": 0
     },
     "prefer-stable": false,
