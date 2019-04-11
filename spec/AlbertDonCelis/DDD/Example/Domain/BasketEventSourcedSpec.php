@@ -1,26 +1,25 @@
 <?php
 
-namespace spec\AlbertDonCelis\DDD\Example;
+namespace spec\AlbertDonCelis\DDD\Example\Domain;
 
 use AlbertDonCelis\DDD\Domain\AbstractEventSourced;
-use AlbertDonCelis\DDD\Example\ExampleEventSourced;
+use AlbertDonCelis\DDD\Example\Domain\BasketEventSourced;
+use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
 use Buttercup\Protects\DomainEvents;
-use Buttercup\Protects\ImmutableArray;
 use PhpSpec\ObjectBehavior;
-use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 /**
  * Class ExampleEventSourcedSpec
  * @package spec\AlbertDonCelis\DDD\Example
  *
- * @mixin ExampleEventSourced
+ * @mixin BasketEventSourced
  */
-class ExampleEventSourcedSpec extends ObjectBehavior
+class BasketEventSourcedSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(ExampleEventSourced::class);
+        $this->shouldHaveType(BasketEventSourced::class);
         $this->shouldHaveType(AbstractEventSourced::class);
     }
 
@@ -32,5 +31,10 @@ class ExampleEventSourcedSpec extends ObjectBehavior
     public function it_should_return_domain_events()
     {
         $this->getRecordedEvents()->shouldHaveType(DomainEvents::class);
+    }
+
+    public function it_should_pickup_a_basket(BasketId $basketId)
+    {
+        $this->beConstructedThrough('pickUp', [ $basketId ]);
     }
 }

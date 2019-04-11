@@ -10,6 +10,4 @@ interface DomainEventInterface extends DomainEvent
     public function eventName(): string;
 
     public function entityType(): string;
-
-    public function timestamp(): int;
 }

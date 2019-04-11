@@ -1,32 +1,30 @@
 <?php
 
-namespace spec\AlbertDonCelis\DDD\Domain\ValueObject;
+namespace spec\AlbertDonCelis\DDD\Example\Domain\ValueObject;
 
-use AlbertDonCelis\DDD\Domain\ValueObject\Uuid;
+use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
 use Buttercup\Protects\IdentifiesAggregate;
 use Faker\Factory;
 use Faker\Generator;
-use InvalidArgumentException;
 use PhpSpec\ObjectBehavior;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 /**
- * Class UuidSpec
- * @package spec\AlbertDonCelis\DDD\Shared\Domain\ValueObject
+ * Class PostIdSpec
+ * @package spec\AlbertDonCelis\DDD\Example\Domain\ValueObject
  *
- * @mixin Uuid
+ * @mixin BasketId
  */
-class UuidSpec extends ObjectBehavior
+class BasketIdSpec extends ObjectBehavior
 {
-
     /** @var Generator $faker */
     private $faker;
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(Uuid::class);
-        $this->shouldImplement(IdentifiesAggregate::class);
+        $this->shouldHaveType(BasketId::class);
+        $this->shouldHaveType(IdentifiesAggregate::class);
     }
 
     public function let()
@@ -39,7 +37,7 @@ class UuidSpec extends ObjectBehavior
     public function it_should_throw_exception_invalid_uuidv4()
     {
         $md5 = $this->faker->md5();
-        $this->shouldThrow(InvalidArgumentException::class)->during__construct($md5);
+        $this->shouldThrow(\InvalidArgumentException::class)->during__construct($md5);
     }
 
     public function it_should_generate_new_uuid()
@@ -73,6 +71,6 @@ class UuidSpec extends ObjectBehavior
     public function it_should_throw_an_error_when_the_string_is_not_a_valid_uuid()
     {
         $identifier = Factory::create()->firstName();
-        $this->shouldThrow(InvalidArgumentException::class)->duringFromString($identifier);
+        $this->shouldThrow(\InvalidArgumentException::class)->duringFromString($identifier);
     }
 }

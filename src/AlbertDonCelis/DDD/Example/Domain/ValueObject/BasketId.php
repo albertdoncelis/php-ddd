@@ -1,10 +1,10 @@
 <?php
 
-namespace AlbertDonCelis\DDD\Domain\ValueObject;
+namespace AlbertDonCelis\DDD\Example\Domain\ValueObject;
 
 use Buttercup\Protects\IdentifiesAggregate;
 
-class Uuid implements IdentifiesAggregate
+class BasketId implements IdentifiesAggregate
 {
     /** @var string $value */
     private $value;
@@ -46,7 +46,6 @@ class Uuid implements IdentifiesAggregate
     {
         return $this->__toString() === $idGenerator->__toString();
     }
-
 
     public static function fromString($idString): IdentifiesAggregate
     {
