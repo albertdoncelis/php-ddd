@@ -4,7 +4,7 @@ namespace AlbertDonCelis\DDD\Example\Domain\ValueObject;
 
 use Buttercup\Protects\IdentifiesAggregate;
 
-class BasketId implements IdentifiesAggregate
+class ProductId implements IdentifiesAggregate
 {
     use IdentifiesAggregateTraits;
 

@@ -2,7 +2,7 @@
 
 namespace spec\AlbertDonCelis\DDD\Example\Domain\ValueObject;
 
-use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
+use AlbertDonCelis\DDD\Example\Domain\ValueObject\ProductId;
 use Buttercup\Protects\IdentifiesAggregate;
 use Faker\Factory;
 use Faker\Generator;
@@ -10,13 +10,7 @@ use PhpSpec\ObjectBehavior;
 use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
-/**
- * Class PostIdSpec
- * @package spec\AlbertDonCelis\DDD\Example\Domain\ValueObject
- *
- * @mixin BasketId
- */
-class BasketIdSpec extends ObjectBehavior
+class ProductIdSpec extends ObjectBehavior
 {
     use IdTraitspec;
 
@@ -25,9 +19,10 @@ class BasketIdSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(BasketId::class);
-        $this->shouldImplement(IdentifiesAggregate::class);
+        $this->shouldHaveType(ProductId::class);
+        $this->shouldHaveType(IdentifiesAggregate::class);
     }
+
 
     public function let()
     {
