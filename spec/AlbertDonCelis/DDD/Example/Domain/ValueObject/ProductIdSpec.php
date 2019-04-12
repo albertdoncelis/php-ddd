@@ -12,7 +12,7 @@ use Prophecy\Argument;
 
 class ProductIdSpec extends ObjectBehavior
 {
-    use IdTraitspec;
+    use IdTraitSpec;
 
     /** @var Generator $faker */
     private $faker;
@@ -22,7 +22,6 @@ class ProductIdSpec extends ObjectBehavior
         $this->shouldHaveType(ProductId::class);
         $this->shouldHaveType(IdentifiesAggregate::class);
     }
-
 
     public function let()
     {

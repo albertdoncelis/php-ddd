@@ -18,7 +18,7 @@ use Prophecy\Argument;
  */
 class BasketIdSpec extends ObjectBehavior
 {
-    use IdTraitspec;
+    use IdTraitSpec;
 
     /** @var Generator $faker */
     private $faker;

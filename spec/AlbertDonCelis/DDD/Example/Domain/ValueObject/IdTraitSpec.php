@@ -11,7 +11,7 @@ namespace spec\AlbertDonCelis\DDD\Example\Domain\ValueObject;
 use Faker\Factory;
 use PHPUnit\Framework\Assert;
 
-trait IdTraitspec
+trait IdTraitSpec
 {
 
     public function it_should_throw_exception_invalid_uuidv4()

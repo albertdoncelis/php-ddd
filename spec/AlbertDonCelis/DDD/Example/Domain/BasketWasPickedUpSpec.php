@@ -45,5 +45,4 @@ class BasketWasPickedUpSpec extends ObjectBehavior
     {
         $this->entityType()->shouldReturn('Basket');
     }
-
 }

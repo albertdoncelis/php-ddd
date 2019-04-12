@@ -4,6 +4,7 @@ namespace AlbertDonCelis\DDD\Example\Domain;
 
 use AlbertDonCelis\DDD\Domain\DomainEventInterface;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
+use AlbertDonCelis\DDD\Example\Domain\ValueObject\ProductId;
 use Buttercup\Protects\IdentifiesAggregate;
 
 class BasketWasPickedUp implements DomainEventInterface

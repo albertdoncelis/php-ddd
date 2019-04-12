@@ -23,6 +23,11 @@ class BasketEventSourcedSpec extends ObjectBehavior
         $this->shouldHaveType(AbstractEventSourced::class);
     }
 
+    public function let(BasketId $basketId)
+    {
+        $this->beConstructedThrough('pickUp', [ $basketId ]);
+    }
+
     public function it_should_clear_record_of_events()
     {
         $this->clearRecordedEvents()->shouldBeNull();
@@ -33,8 +38,10 @@ class BasketEventSourcedSpec extends ObjectBehavior
         $this->getRecordedEvents()->shouldHaveType(DomainEvents::class);
     }
 
-    public function it_should_pickup_a_basket(BasketId $basketId)
+    public function it_should_get_the_events_from_the_basket(BasketId $basketId)
     {
         $this->beConstructedThrough('pickUp', [ $basketId ]);
+
+        $this->getRecordedEvents()->count()->shouldReturn(1);
     }
 }
