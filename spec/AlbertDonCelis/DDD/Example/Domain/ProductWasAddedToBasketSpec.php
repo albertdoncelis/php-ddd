@@ -43,6 +43,16 @@ class ProductWasAddedToBasketSpec extends AbstractDomainEventSpec
         $this->beConstructedWith($basketId, $productId, $this->productName);
     }
 
+    public function it_should_return_product_name()
+    {
+        $this->productName()->shouldReturn($this->productName);
+    }
+
+    public function it_should_return_productId()
+    {
+        $this->productId()->shouldReturn($this->productId);
+    }
+
     protected function aggregateId()
     {
         return $this->basketId;
@@ -56,15 +66,5 @@ class ProductWasAddedToBasketSpec extends AbstractDomainEventSpec
     protected function domainEntityType(): string
     {
         return "Basket";
-    }
-
-    public function it_should_return_product_name()
-    {
-        $this->productName()->shouldReturn($this->productName);
-    }
-
-    public function it_should_return_productId()
-    {
-        $this->productId()->shouldReturn($this->productId);
     }
 }

@@ -14,7 +14,7 @@ use Prophecy\Argument;
  *
  * @mixin BasketWasPickedUp
  */
-class BasketWasPickedUpSpec extends ObjectBehavior
+class BasketWasPickedUpSpec extends AbstractDomainEventSpec
 {
     /** @var BasketId $basketId */
     private $basketId;
@@ -31,18 +31,18 @@ class BasketWasPickedUpSpec extends ObjectBehavior
         $this->beConstructedWith($basketId);
     }
 
-    public function it_should_return_identifies_Aggregate()
+    protected function aggregateId()
     {
-        $this->getAggregateId()->shouldReturn($this->basketId);
+        return $this->basketId;
     }
 
-    public function it_should_get_event_name()
+    protected function domainEventName(): string
     {
-        $this->eventName()->shouldReturn('BasketWasPickedUp');
+        return 'BasketWasPickedUp';
     }
 
-    public function it_should_return_entity_type()
+    protected function domainEntityType(): string
     {
-        $this->entityType()->shouldReturn('Basket');
+        return "Basket";
     }
 }
