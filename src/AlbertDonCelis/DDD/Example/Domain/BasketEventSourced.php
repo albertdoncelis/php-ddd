@@ -3,6 +3,7 @@
 namespace AlbertDonCelis\DDD\Example\Domain;
 
 use AlbertDonCelis\DDD\Domain\AbstractEventSourced;
+use AlbertDonCelis\DDD\Domain\History;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\ProductId;
 
@@ -40,5 +41,13 @@ class BasketEventSourced extends AbstractEventSourced
         $this->recordThat(
             new ProductWasAddedToBasket($this->basketId, $productId, $productName)
         );
+    }
+
+    public static function reconstituteFrom(History $aggregateHistory)
+    {
+        $basketId = $aggregateHistory->aggregateId();
+        $basketEventSourced = new self(new BasketId($basketId));
+
+        return $basketEventSourced;
     }
 }

@@ -3,10 +3,14 @@
 namespace spec\AlbertDonCelis\DDD\Example\Domain;
 
 use AlbertDonCelis\DDD\Domain\AbstractEventSourced;
+use AlbertDonCelis\DDD\Domain\History;
 use AlbertDonCelis\DDD\Example\Domain\BasketEventSourced;
+use AlbertDonCelis\DDD\Example\Domain\BasketWasPickedUp;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\ProductId;
+use Buttercup\Protects\DomainEvent;
 use Buttercup\Protects\DomainEvents;
+use Buttercup\Protects\IdentifiesAggregate;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSpec\ObjectBehavior;
@@ -48,15 +52,27 @@ class BasketEventSourcedSpec extends ObjectBehavior
     public function it_should_get_the_events_from_the_basket(BasketId $basketId)
     {
         $this->beConstructedThrough('pickUp', [ $basketId ]);
-
         $this->getRecordedEvents()->count()->shouldReturn(1);
     }
 
     public function it_should_add_a_product_to_a_basket(ProductId $productId)
     {
-
         $this->addProduct($productId, $this->faker->firstName)->shouldBeNull();
         $this->getRecordedEvents()->count()->shouldReturn(2);
     }
 
+    public function it_should_reconstitute_form_the_history(
+        History $history,
+        IdentifiesAggregate $aggregateId
+    )
+    {
+        $BasketUuId = Factory::create()->uuid;
+
+        $this->beConstructedThrough('reconstituteFrom', [ $history ]);
+
+        $history->aggregateId()->shouldBeCalledOnce()->willReturn($aggregateId);
+        $aggregateId->__toString()->willReturn($BasketUuId);
+
+        $this->shouldHaveType(BasketEventSourced::class);
+    }
 }

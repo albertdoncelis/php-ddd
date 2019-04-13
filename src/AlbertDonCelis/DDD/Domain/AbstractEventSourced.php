@@ -6,7 +6,7 @@ use Buttercup\Protects\DomainEvent;
 use Buttercup\Protects\DomainEvents;
 use Buttercup\Protects\RecordsEvents;
 
-abstract class AbstractEventSourced implements RecordsEvents
+abstract class AbstractEventSourced implements RecordsEvents, EventSourcedInterface
 {
     /**
      * @var DomainEvents []
