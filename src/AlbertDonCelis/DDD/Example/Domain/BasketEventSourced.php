@@ -4,7 +4,12 @@ namespace AlbertDonCelis\DDD\Example\Domain;
 
 use AlbertDonCelis\DDD\Domain\AbstractEventSourced;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
+use AlbertDonCelis\DDD\Example\Domain\ValueObject\ProductId;
 
+/**
+ * @SuppressWarnings(PHPMD.UnusedPrivateMethod);
+ *
+ */
 class BasketEventSourced extends AbstractEventSourced
 {
     /** @var BasketId $basketId */
@@ -28,5 +33,12 @@ class BasketEventSourced extends AbstractEventSourced
         );
 
         return $basket;
+    }
+
+    public function addProduct(ProductId $productId, string $productName): void
+    {
+        $this->recordThat(
+            new ProductWasAddedToBasket($this->basketId, $productId, $productName)
+        );
     }
 }

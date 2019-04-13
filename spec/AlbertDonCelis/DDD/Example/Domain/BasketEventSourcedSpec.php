@@ -5,7 +5,10 @@ namespace spec\AlbertDonCelis\DDD\Example\Domain;
 use AlbertDonCelis\DDD\Domain\AbstractEventSourced;
 use AlbertDonCelis\DDD\Example\Domain\BasketEventSourced;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
+use AlbertDonCelis\DDD\Example\Domain\ValueObject\ProductId;
 use Buttercup\Protects\DomainEvents;
+use Faker\Factory;
+use Faker\Generator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -17,6 +20,9 @@ use Prophecy\Argument;
  */
 class BasketEventSourcedSpec extends ObjectBehavior
 {
+    /** @var Generator $faker */
+    private $faker;
+
     function it_is_initializable()
     {
         $this->shouldHaveType(BasketEventSourced::class);
@@ -25,6 +31,7 @@ class BasketEventSourcedSpec extends ObjectBehavior
 
     public function let(BasketId $basketId)
     {
+        $this->faker = Factory::create();
         $this->beConstructedThrough('pickUp', [ $basketId ]);
     }
 
@@ -44,4 +51,12 @@ class BasketEventSourcedSpec extends ObjectBehavior
 
         $this->getRecordedEvents()->count()->shouldReturn(1);
     }
+
+    public function it_should_add_a_product_to_a_basket(ProductId $productId)
+    {
+
+        $this->addProduct($productId, $this->faker->firstName)->shouldBeNull();
+        $this->getRecordedEvents()->count()->shouldReturn(2);
+    }
+
 }

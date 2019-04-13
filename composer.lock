@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d339a94ef792dc8f145a6584d87ddb8a",
+    "content-hash": "bf37a4ee57d0a40e06d3ec0029bbe55b",
     "packages": [
         {
             "name": "buttercup/protects",
@@ -52,6 +52,57 @@
                 "event sourcing"
             ],
             "time": "2014-06-28 14:34:37"
+        },
+        {
+            "name": "mathiasverraes/classfunctions",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mathiasverraes/classfunctions.git",
+                "reference": "f0f8dadf1ab4a71e84dede2adb1ed8a34cef7c34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mathiasverraes/classfunctions/zipball/f0f8dadf1ab4a71e84dede2adb1ed8a34cef7c34",
+                "reference": "f0f8dadf1ab4a71e84dede2adb1ed8a34cef7c34",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Verraes": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathias Verraes",
+                    "email": "mathias@verraes.net",
+                    "homepage": "http://verraes.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Functions to manipulate class names",
+            "homepage": "http://verraes.net",
+            "keywords": [
+                "classes",
+                "utilities"
+            ],
+            "time": "2014-07-28T14:39:20+00:00"
         },
         {
             "name": "paragonie/random_compat",

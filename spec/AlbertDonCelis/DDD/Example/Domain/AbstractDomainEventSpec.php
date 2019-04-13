@@ -7,15 +7,12 @@
  */
 
 namespace spec\AlbertDonCelis\DDD\Example\Domain;
-use Buttercup\Protects\IdentifiesAggregate;
 use PhpSpec\ObjectBehavior;
 
 abstract class AbstractDomainEventSpec extends ObjectBehavior
 {
 
     abstract protected function aggregateId();
-    abstract protected function domainEventName(): string ;
-    abstract protected function domainEntityType(): string ;
 
     public function it_should_return_identifies_Aggregate()
     {
