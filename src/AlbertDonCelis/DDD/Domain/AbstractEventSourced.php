@@ -29,8 +29,13 @@ abstract class AbstractEventSourced implements RecordsEvents, EventSourcedInterf
     /**
      * @param DomainEvent $domain
      */
-    public function recordThat(DomainEvent $domain): void
+    protected function recordThat(DomainEvent $domain): void
     {
         $this->recordEvents[] = $domain;
+    }
+
+    public function getEvents(): array
+    {
+        return $this->recordEvents;
     }
 }
