@@ -53,4 +53,9 @@ class ProductWasAddedToBasket implements DomainEventInterface
     {
         return $this->productId;
     }
+
+    public function data(): array
+    {
+        return [];
+    }
 }

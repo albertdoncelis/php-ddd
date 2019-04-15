@@ -34,4 +34,9 @@ class BasketWasPickedUp implements DomainEventInterface
     {
         return "Basket";
     }
+
+    public function data(): array
+    {
+        return [];
+    }
 }

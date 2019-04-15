@@ -28,4 +28,9 @@ abstract class AbstractDomainEventSpec extends ObjectBehavior
     {
         $this->entityType()->shouldReturn($this->domainEntityType());
     }
+
+    public function it_should_return_data()
+    {
+        $this->data()->shouldReturn($this->arrayData());
+    }
 }

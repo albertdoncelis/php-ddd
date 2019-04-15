@@ -67,4 +67,9 @@ class ProductWasAddedToBasketSpec extends AbstractDomainEventSpec
     {
         return "Basket";
     }
+
+    protected function arrayData(): array
+    {
+        return [];
+    }
 }
