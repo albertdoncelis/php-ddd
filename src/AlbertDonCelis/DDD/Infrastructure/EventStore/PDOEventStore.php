@@ -3,9 +3,7 @@
 namespace AlbertDonCelis\DDD\Infrastructure\EventStore;
 
 use AlbertDonCelis\DDD\Domain\DomainEventInterface;
-use AlbertDonCelis\DDD\Domain\History;
 use Buttercup\Protects\DomainEvents;
-use Buttercup\Protects\IdentifiesAggregate;
 
 class PDOEventStore implements EventStoreInterface
 {
