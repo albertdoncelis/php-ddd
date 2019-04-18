@@ -8,7 +8,6 @@
 
 namespace AlbertDonCelis\DDD\Infrastructure\Projection;
 
-
 use AlbertDonCelis\DDD\Domain\EventPublishInterface;
 
 interface ProjectionInterface extends EventPublishInterface

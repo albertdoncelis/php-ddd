@@ -2,9 +2,6 @@
 
 namespace AlbertDonCelis\DDD\Domain;
 
-
-
-
 class EventPublisher
 {
     private $projections = [];

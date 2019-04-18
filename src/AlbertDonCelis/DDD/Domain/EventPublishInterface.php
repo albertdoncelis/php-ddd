@@ -3,7 +3,6 @@
 
 namespace AlbertDonCelis\DDD\Domain;
 
-
 interface EventPublishInterface
 {
     public function listenToEventNameOf(): string;
