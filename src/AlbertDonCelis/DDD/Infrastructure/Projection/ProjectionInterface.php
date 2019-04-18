@@ -8,11 +8,10 @@
 
 namespace AlbertDonCelis\DDD\Infrastructure\Projection;
 
-use AlbertDonCelis\DDD\Domain\DomainEventInterface;
 
-interface ProjectionInterface
+use AlbertDonCelis\DDD\Domain\EventPublishInterface;
+
+interface ProjectionInterface extends EventPublishInterface
 {
-    public function listenToEventNameOf(): string;
 
-    public function project(DomainEventInterface $event): void;
 }

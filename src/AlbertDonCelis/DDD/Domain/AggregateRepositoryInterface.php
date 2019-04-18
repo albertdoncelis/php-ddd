@@ -22,5 +22,5 @@ interface AggregateRepositoryInterface
     /**
      * @param RecordsEvents $recordEvents
      */
-    public function saveEventSourced(RecordsEvents $recordEvents): void;
+    public function save(RecordsEvents $recordEvents): void;
 }
