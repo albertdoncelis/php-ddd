@@ -8,9 +8,9 @@
 
 namespace AlbertDonCelis\DDD\Infrastructure\Projection;
 
-use AlbertDonCelis\DDD\Domain\EventPublishInterface;
+use AlbertDonCelis\DDD\Domain\EventPublisherInterface;
 
-interface ProjectionInterface extends EventPublishInterface
+interface ProjectionInterface extends EventPublisherInterface
 {
 
 }

@@ -8,7 +8,7 @@ use AlbertDonCelis\DDD\Example\Domain\BasketWasPickedUp;
 use AlbertDonCelis\DDD\Example\Domain\ValueObject\BasketId;
 use AlbertDonCelis\DDD\Example\Infrastucture\Persistence\BasketRepository;
 use AlbertDonCelis\DDD\Infrastructure\EventStore\EventStoreInterface;
-use AlbertDonCelis\DDD\Domain\EventPublisher;
+use AlbertDonCelis\DDD\Domain\EventPublishers;
 use Buttercup\Protects\DomainEvents;
 use Buttercup\Protects\RecordsEvents;
 use Faker\Factory;
@@ -27,7 +27,7 @@ class BasketRepositorySpec extends ObjectBehavior
     /** @var EventStoreInterface $eventStore */
     private $eventStore;
 
-    /** @var EventPublisher $projector */
+    /** @var EventPublishers $projector */
     private $projector;
 
     /** @var Generator $faker */
@@ -39,7 +39,7 @@ class BasketRepositorySpec extends ObjectBehavior
         $this->shouldHaveType(AggregateRepositoryInterface::class);
     }
 
-    public function let(EventStoreInterface $eventStore, EventPublisher $projector)
+    public function let(EventStoreInterface $eventStore, EventPublishers $projector)
     {
 
         $this->projector = $projector;
@@ -63,7 +63,7 @@ class BasketRepositorySpec extends ObjectBehavior
 
         /** @var DomainEventInterface $event */
         foreach ($events as $event) {
-            $this->projector->subscribeTo($event)->shouldBeCalledTimes(1);
+            $this->projector->notify($event)->shouldBeCalledTimes(1);
         }
 
         $recordsEvents->clearRecordedEvents()->shouldBeCalledOnce();

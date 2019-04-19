@@ -5,13 +5,13 @@ namespace AlbertDonCelis\DDD\Example\Infrastucture\Persistence;
 use AlbertDonCelis\DDD\Domain\AggregateRepositoryInterface;
 use AlbertDonCelis\DDD\Domain\DomainEventInterface;
 use AlbertDonCelis\DDD\Infrastructure\EventStore\EventStoreInterface;
-use AlbertDonCelis\DDD\Domain\EventPublisher;
+use AlbertDonCelis\DDD\Domain\EventPublishers;
 use Buttercup\Protects\RecordsEvents;
 
 class BasketRepository implements AggregateRepositoryInterface
 {
     /**
-     * @var EventPublisher
+     * @var EventPublishers
      */
     private $eventPublisher;
 
@@ -20,7 +20,7 @@ class BasketRepository implements AggregateRepositoryInterface
      */
     private $eventStore;
 
-    public function __construct(EventStoreInterface $eventStore, EventPublisher $eventPublisher)
+    public function __construct(EventStoreInterface $eventStore, EventPublishers $eventPublisher)
     {
         $this->eventPublisher = $eventPublisher;
         $this->eventStore = $eventStore;
@@ -37,7 +37,7 @@ class BasketRepository implements AggregateRepositoryInterface
 
         /** @var DomainEventInterface $event */
         foreach ($domainEvents->toArray() as $event) {
-            $this->eventPublisher->subscribeTo($event);
+            $this->eventPublisher->notify($event);
         }
 
         $recordEvents->clearRecordedEvents();
